@@ -164,17 +164,17 @@ def login_request(req):
 
         if form.is_valid():
             username = form.cleaned_data['username']
-            user = User.objects.get(username=username)
-            passw = form.cleaned_data.get('pass')
+            passw = form.cleaned_data['password']
 
-            user = authenticate(user = user, passw = passw)
-
+            user = authenticate(username = username, password = passw)
+            print(username,passw,user)
             if user is not None:
                 login(req, user)
                 return render(req, 'login-suc.html', {'message': f'Welcome, {user}!'})
-
+                
             else:
-                return render(req, 'login.html', {'message': f'Error: el usaurio no existe', 'form': form})
+                
+              return render(req, 'login.html', {'message': f'Error: el usaurio no existe', 'form': form})
         else:
             return render(req, 'login.html', {'message':f'Error, datos incorrectos', 'form':form})
     form= AuthenticationForm()
@@ -195,23 +195,27 @@ def edit_profile(req):
 
             user.username = data['username']
             user.email = data['email']
-            user.name = data['name']
-            user.lastname = data['lastname']
+            user.first_name = data['name']
+            user.last_name = data['lastname']
             
             user.save()
 
-            return redirect('perf')
+            return redirect('all_reviews')
 
     
     else:
         perform = UserEditForm(initial = {
                                       'username': user.username,
                                       'email': user.email,
-                                      'name': user.name,
-                                      'lastname': user.lastname,
+                                      'name': user.first_name,
+                                      'lastname': user.last_name,
                                        })
     
-    return render(req, 'edit-profile.html', {'perform': perform, 'user': user})
+        return render(req, 'edit-profile.html', {'perform': perform, 'user': user})
+    return    render(req, 'warning.html', {'message':f'Necesitas estar logeado para realizar esta accion', 'my_form':my_form})
+  
+    
+
 
 @login_required
 def create_avatar(req):
