@@ -1,10 +1,12 @@
-# MoonAccesorios
--La primera pagina a navegar es donde sale la bienvenida,el index.html
+# MovieApp
+-En el extremo superior se encuentra la seccion para poder logearse y en caso de ser necesario registrarse  para navegar en la app
 
--La segunda seccion a visitar es Productos donde podemos cargar un producto mediante un formulario de POST
+-La primera pagina a navegar es donde sale la bienvenida contando un poco el proyecto,el index.html
 
--La tercera es pedidos donde tambien podemos cargar una orden de pedidos para guardarla en la BD
+-La segunda seccion a visitar es Movies donde los administradores pueden cargar peliculas para que los MovieUser puedan dejar su Review mas tarde
 
--En la seccion sucursales tambien podemos cargar una sucursal de la tienda virtual
+-En la tercera seccion se encuentran todas las MovieReviews donde los usuarios podran responder si lo desean
 
--Por ultimo la seccion de busqueda donde podemos buscar un producto o una orden de compra mediante un formulario que usa GET
+-Tenemos una seccion para poder buscar las peliculas por titulo con un boton que nos redirige para dejar la review a esa pelicula buscada
+
+-Por ultimo una seccion de perfil donde se podra editar este mismo y poner un avatar
