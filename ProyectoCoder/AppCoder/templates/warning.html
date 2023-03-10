@@ -1,0 +1,42 @@
+{% extends 'index.html' %} {% block modal %}
+
+<div class="row justify-content-center">
+  {% if not delete_review %}
+  <div class="card text-white bg-danger mb-3" style="max-width: 18rem">
+    <div class="card-header">Eliminar MovieReview</div>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="card-body">
+        <h5 class="card-title">Title: {{delete.text}}</h5>
+      </div>
+      <div class="d-flex justify-content-around mb-2">
+        <a
+          href="{% url 'reviews' delete.id %}"
+          class="btn btn-secondary mb-2 me-2"
+          >Cancel</a
+        >
+        <input type="submit" class="btn btn-danger mb-2" value="Delete" />
+      </div>
+    </form>
+  </div>
+  {% else%}
+  <div class="card text-white bg-danger mb-3" style="max-width: 18rem">
+    <div class="card-header">Eliminar Review</div>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="card-body">
+        <h5 class="card-title">Title: {{delete.text}}</h5>
+      </div>
+      <div class="d-flex justify-content-around mb-2">
+        <a
+          href="{% url 'reviews' delete.id %}"
+          class="btn btn-secondary mb-2 me-2"
+          >Cancel</a
+        >
+        <input type="submit" class="btn btn-danger mb-2" value="Delete" />
+      </div>
+    </form>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

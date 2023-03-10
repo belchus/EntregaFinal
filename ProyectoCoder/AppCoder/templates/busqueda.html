@@ -1,0 +1,14 @@
+{% extends 'index.html' %} {% block title %}  {%endblock%}
+{% block main_content %}
+<div class="container">
+    <div class="row col-lg-6 col-md-12 mb-3">
+      <h2 class="my-5">Buscar Movie{{title}}</h2>
+      <form action="/find_movie/" method="GET">
+        <input type="text" title="title" id="title" name="title"/>
+        <input type="submit" value="Buscar">
+      </form>
+    </div>
+  </div>
+
+{%endblock%}
+

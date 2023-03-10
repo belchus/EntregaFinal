@@ -1,0 +1,23 @@
+{% extends 'index.html' %} {% block title %}
+<title>Edit profile</title> {%endblock%} {% block main_content %}
+
+<div style="width: 70%; margin: auto">
+  <h2 class="mb-5">Edit profile</h2>
+
+  <form action="" method="POST">
+    {% csrf_token %}
+    <table>
+      {{ my_form.as_p }}
+    </table>
+    <input
+      class="btn btn-primary my-3 py-1 me-2"
+      type="submit"
+      value="Edit profile"
+    />
+    <a class="btn btn-primary my-3 py-1" href="{% url 'edit-avatar' %}"
+      >Editar tu MovieAvatar</a
+    >
+  </form>
+</div>
+
+{% endblock %}

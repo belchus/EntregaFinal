@@ -1,0 +1,42 @@
+
+{% extends 'index.html' %} {% block title %} Mi lista {%endblock%}
+{% block main_content %}
+
+<section class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2 class="my-5">Agregar una movie a tu lista</h2>
+  
+        {% if fav_form.errors %}
+        <span style="color: red"
+          >Lo datos son incorrectos, por favor, intentelo de nuevo</span
+        >
+        {% endif %}
+  
+        <form
+          class="mx-5 px-3"
+          action="{% url 'fav_form' %}"
+          method="POST"
+        >
+          {% csrf_token %}
+  
+          <div
+            class="d-flex justify-content-center col-lg-6 mb-3 align-items-center"
+          >
+            <table>
+              {{ AddFav.as_table}}
+            </table>
+
+            <button
+              style="max-height: 3rem"
+              type="submit"
+              class="btn btn-primary mx-3"
+            >
+              Agregar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+  {% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'index.html'%} {% block title %}<title>Review </title>
+{%endblock%} {% block main_content %}
+<div class="row justify-content-center" style="width: 70%; margin: auto">
+  {% if user.is_authenticated and req == review.user.username %}
+  <div class="d-flex">
+    <a
+      href="{% url 'delete-review' review.id %}"
+      type="button"
+      class="btn btn-danger p-1 mb-3 me-3"
+      >Delete</a
+    >
+    <a
+      href="{% url 'update-review' review.id %}"
+      type="button"
+      class="btn btn-primary p-1 mb-3"
+      >Update</a
+    >
+  </div>
+
+  {% endif%}
+  <article style="margin-bottom: 3rem col-md-12 col-sm-12">
+    <h2>{{review.title}}</h2>
+    <h4>{{review.user}}</h4>
+    
+
+    <p class="mt-3">{{review.text | safe}}</p>
+
+    <h6 class="text-end">Date: {{review.date}}</h6>
+  </article>
+  <section class="col-md-12">
+    <h5 class="mb-3">Reply</h5>
+    {% if reviews.rev %}
+    <ul class="p-0">
+      {% for reviews in all_review %}
+      <li>
+        <article class="mt-3">
+          <span
+            class="gradient rounded px-2"
+            style="font-size: 1.2rem; margin-top: 1rem"
+            >{{review.user}}</span
+          >
+
+          <p class="comment-bg rounded my-1">{{comment.comment}}</p>
+          {% if user.is_authenticated and req == comment.username.username %}
+          <a
+            href="{% url 'delete-comment' comment.id %}"
+            class="btn btn-danger py-1 my-1"
+            style="font-size: 0.8rem"
+            >Delete</a
+          >
+          {% endif %}
+        </article>
+        <p class="text-muted" style="font-size: 12px">{{comment.created_at}}</p>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <span class="mb-3">Make the first comment!</span>
+    {% endif %}
+  </section>
+  {% if user.is_authenticated %}
+  <form action="" method="POST">
+    {% csrf_token %}{% for field in comment_form %} {{field.label}}
+    <br />
+    {{form.media}} {{field}}
+    <br />
+    {%endfor%}
+    <input class="btn btn-primary mb-3 p-2" type="submit" value="Comment" />
+  </form>
+</div>
+
+{% endif %} {% endblock %}

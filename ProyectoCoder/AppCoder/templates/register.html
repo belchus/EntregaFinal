@@ -1,0 +1,14 @@
+{% extends 'index.html' %} {% block title %}<title>User register</title>
+{%endblock%} {% block main_content %}
+<div style="width: 30%; margin: auto">
+  <h2 class="mb-5">Create MovieUser</h2>
+  {% if message %}
+  <p style="color: red">{{message}}</p>
+  {% endif %}
+  <form action="" method="POST">
+    {% csrf_token%} {{ form.as_p}}
+
+    <button class="btn btn-primary mb-3 py-1" type="submit">Registerate</button>
+  </form>
+</div>
+{% endblock %}
