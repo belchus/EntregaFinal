@@ -40,17 +40,17 @@
             >{{review.user}}</span
           >
 
-          <p class="comment-bg rounded my-1">{{comment.comment}}</p>
-          {% if user.is_authenticated and req == comment.username.username %}
+          <p class="comment-bg rounded my-1">{{review.text}}</p>
+          {% if user.is_authenticated and req == review.username.username %}
           <a
-            href="{% url 'delete-comment' comment.id %}"
+            href="{% url 'delete-review comment.id %}"
             class="btn btn-danger py-1 my-1"
             style="font-size: 0.8rem"
             >Delete</a
           >
           {% endif %}
         </article>
-        <p class="text-muted" style="font-size: 12px">{{comment.created_at}}</p>
+        <p class="text-muted" style="font-size: 12px">{{review.date}}</p>
       </li>
       {% endfor %}
     </ul>
@@ -60,7 +60,7 @@
   </section>
   {% if user.is_authenticated %}
   <form action="" method="POST">
-    {% csrf_token %}{% for field in comment_form %} {{field.label}}
+    {% csrf_token %}{% for field in review_form %} {{field.label}}
     <br />
     {{form.media}} {{field}}
     <br />

@@ -268,7 +268,7 @@ def detail_reviews(request, pk):
     return render(request, 'revdetail.html', context)
 
 @login_required
-def delete_review(request, pk):
+def delete_reply(request, pk):
     oldreview = Review.objects.get(id= pk)
     context = {'delete': oldreview}
     print('reviewdelete',oldreview.tag.tag)
@@ -311,7 +311,7 @@ def delete_review(request, pk):
     return render(request, 'warning.html', context)
 
 @login_required
-def update_post(request, pk):
+def update_review(request, pk):
     revupdate = Review.objects.get(tag= pk)
     rev_form = AddReview(instance=revupdate)
     update = True
