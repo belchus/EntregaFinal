@@ -1,10 +1,10 @@
 from django.urls import include, path
 from AppCoder import views
 from django.contrib.auth.views import LogoutView
-
+from django.conf import settings
 
 urlpatterns = [
- path('about-me/', views.inicio),
+ path('', views.inicio),
     path('movies/', views.Movies),
     path('add_form/', views.add_form, name='add_form'),
     path('favorite/', views.Movies),

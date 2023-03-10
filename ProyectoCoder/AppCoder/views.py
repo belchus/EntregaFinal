@@ -147,7 +147,7 @@ def register(req):
             password = form.cleaned_data['password1']
             
             form.save()
-            return render(req, 'success.html', {'message': "Usuario creado"})
+            return render(req, 'sucess.html', {'message': "Usuario creado"})
 
     else: 
         form = UserCreationForm()

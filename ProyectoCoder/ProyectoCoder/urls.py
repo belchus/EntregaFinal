@@ -18,10 +18,11 @@ from django.urls import include, path
 from AppCoder.views import *
 from AppCoder import views
 from django.contrib.auth.views import LogoutView
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-path('about-me/', views.inicio),
+path('', views.inicio),
     path('movies/', views.Movies),
     path('add_form/', views.add_form, name='add_form'),
     path('favorite/', views.Movies),
@@ -41,6 +42,7 @@ path('about-me/', views.inicio),
     path('delete-review/<pk>', views.delete_review, name='delete-post'),
     path('update-review/<pk>', views.update_review, name='update-post'),
     path('delete-reply/<pk>', views.delete_reply, name='delete-comment'),
+
 
 
 ]
