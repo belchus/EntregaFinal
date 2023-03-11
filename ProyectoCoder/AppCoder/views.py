@@ -61,7 +61,6 @@ def add_form(request):
             data = addmovie.cleaned_data
             newProd = Movie(
                 title=data['title'],
-                img=data['img'],
                             
                 description=data['description'],
                 tag=data['tag']
@@ -80,29 +79,26 @@ def add_form(request):
 
 
 
-#Formulario para agregar una orden  a nuestra base de datos
 
+
+@login_required
 def review_form(request):
-    if request.method == "POST":
-        addreview = AddReview(request.POST)
+    form = AddNewReview()
 
-        if addreview .is_valid():
-            data = addreview.cleaned_data
-            newRev = Review(title=data['title'],
-                            img=data['img'],
-                            date=data['date'],
-                            stars=data['stars'],
-                            text =data['text'])
+    if request.method == 'POST':
+        form = AddNewReview(request.POST,request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+           
+            new_review = Review(
+                            title = data['title'],
+                            text = data['text'],
+                            stars = data['stars'])
+            new_review.save()
+            return redirect('../')
 
-            newRev.save()
-            return redirect(inicio)
-        else:
-            return render(request, 'reviews.html', {'AddReview': AddReview})    
-
-    addreview = AddReview()
-    return render(request, 'reviews.html', {'AddReview': AddReview})
-
-
+    context = {'form':form}
+    return render(request, 'newreview.html', context)
 
 
 def find_movie(request):
@@ -221,7 +217,7 @@ def create_avatar(req):
     
 
 def all_reviews(request):
-    all_reviews = Review.objects.all().order_by('-tag')
+    all_reviews = Review.objects.all()
 
     context = {'all_reviews': all_reviews, }
 
@@ -268,25 +264,7 @@ def delete_reply(request, pk):
 
     return render(request, 'warning.html', context)
 
-@login_required
-def review_form(request):
-    form = AddNewReview()
 
-    if request.method == 'POST':
-        form = AddNewReview(request.POST,request.FILES)
-        if form.is_valid():
-            data = form.cleaned_data
-           
-            new_review = Review(user = request.user,
-                            title = data['title'],
-                            username=data['user'],
-                            text = data['text'],
-                            stars = data['stars'])
-            new_review.save()
-            return redirect('reviews')
-
-    context = {'form':form}
-    return render(request, 'newreview.html', context)
 
 @login_required
 def delete_review(request, pk):

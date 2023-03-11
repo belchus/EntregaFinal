@@ -6,7 +6,6 @@ from .models import *
 from django.forms import ModelForm
 class AddMovie(forms.Form):
  title =  forms.CharField(max_length=40)
- img = forms.CharField(max_length= 250)
  description = forms.CharField(max_length=200)
  tag = forms.CharField(max_length=40)
 
@@ -24,7 +23,7 @@ class AddNewReview(ModelForm):
     class Meta:
         model = Review
         fields = '__all__'
-        exclude = ['username']
+        exclude = ['user']
         widgets ={
             'review': forms.Textarea(attrs={'class': 'form-control','placeholder': 'Dejar MovieReview' }),
             
