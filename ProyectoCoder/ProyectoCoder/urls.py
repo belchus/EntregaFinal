@@ -25,7 +25,7 @@ urlpatterns = [
 path('', views.inicio),
     path('movies/', views.Movies),
     path('add_form/', views.add_form, name='add_form'),
-    path('all_reviews/', views.Reviews),
+    path('all_reviews/', views.all_reviews),
     path('find_movie/', views.find_movie, name='find_movie'),
     path('resultados/',views.Resultados,name='resultados'),
     path('busqueda/',views.Busqueda),

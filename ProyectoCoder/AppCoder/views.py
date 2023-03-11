@@ -8,23 +8,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User as UserAuth
 
-def saludo(req):
- return HttpResponse("Hola coder")
-
-def probando(req):
- mi_html = open('C:/Users/belu9/Desktop/EntregaPython/ProyectoCoder/AppCoder/static/index.html')
- plantilla = Template(mi_html.read())
- mi_html.close()
- contexto = Context()
- documento = plantilla.render(contexto)
- return HttpResponse(documento)
- 
-def Login(request):
-    return render(request,'login.html')
-
-def Register(req):
-    return render(req,'register.html')
-
 def about_me(request):
     return render(request, 'about-me.html')
 
@@ -32,17 +15,10 @@ def about_me(request):
 def inicio(request):
     return render(request, 'index.html')
 
-def Avatars(request):
-    return render(request, 'avatar.html')
 
 def Movies(request):
     return render(request, 'movie.html')
 
-def Lista(request):
-    return render(request, 'lista.html')
-
-def Reviews(request):
-    return render(request, 'reviews.html')
 
 def Busqueda(request):
     return render(request, 'busqueda.html')
@@ -52,7 +28,8 @@ def Resultados(request):
 
 
 
-#Formulario para agregar un producto a nuestra base de datos
+#Formulario para agregar una pelicula a nuestra base de datos
+@login_required
 def add_form(request):
     if request.method == "POST":
         addmovie = AddMovie(request.POST)
@@ -79,7 +56,7 @@ def add_form(request):
 
 
 
-
+#Formulario para dejar una reseña a una pelicula
 
 @login_required
 def review_form(request):
@@ -100,6 +77,7 @@ def review_form(request):
     context = {'form':form}
     return render(request, 'newreview.html', context)
 
+#Formulario para buscar una pelicula
 
 def find_movie(request):
 
@@ -114,6 +92,7 @@ def find_movie(request):
 
     return HttpResponse(respuesta)
     
+#Formulario para registrarse
 
 def register(req):
     if req.method == 'POST':
@@ -133,6 +112,7 @@ def register(req):
     return render(req, 'register.html', {'form': form})
 
 
+#Formulario para logearse
 
 def login_request(req):
     form = UserCreationForm()
@@ -159,7 +139,7 @@ def login_request(req):
     return render(req, 'login.html',{'form':form})
 
 
-
+#Formulario para editar el perfil
 
 @login_required
 def edit_profile(req):
@@ -193,7 +173,7 @@ def edit_profile(req):
     return    render(req, 'warning.html', {'message':f'Necesitas estar logeado para realizar esta accion', 'my_form':my_form})
   
     
-
+#Formulario para crear nuestro avatar en la base de datos
 
 @login_required
 def create_avatar(req):
@@ -216,6 +196,8 @@ def create_avatar(req):
         return render(req, 'edit-avatar.html', {'perform': perform})
     
 
+#Funcion para traer todas las reseñas
+
 def all_reviews(request):
     all_reviews = Review.objects.all()
 
@@ -225,7 +207,7 @@ def all_reviews(request):
 
 
 
-
+#Formulario para comentar
 
 def detail_reviews(request, pk):
     review = Movie.objects.get(tag=pk)
@@ -252,6 +234,8 @@ def detail_reviews(request, pk):
     
     return render(request, 'revdetail.html', context)
 
+#Funcion para eliminar la respuesta
+
 @login_required
 def delete_reply(request, pk):
     oldreview = Review.objects.get(id= pk)
@@ -265,6 +249,7 @@ def delete_reply(request, pk):
     return render(request, 'warning.html', context)
 
 
+#Funcion para borrar la reseña
 
 @login_required
 def delete_review(request, pk):
@@ -276,6 +261,8 @@ def delete_review(request, pk):
         return redirect('reviews')
 
     return render(request, 'warning.html', context)
+
+#Formulario para actualizar la reseña
 
 @login_required
 def update_review(request, pk):

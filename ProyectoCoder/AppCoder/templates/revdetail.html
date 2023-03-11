@@ -1,10 +1,10 @@
 {% extends 'index.html'%} {% block title %}<title>Review </title>
 {%endblock%} {% block main_content %}
 <div class="row justify-content-center" style="width: 70%; margin: auto">
-  {% if user.is_authenticated and req == review.user.username %}
+  {% if user.is_authenticated and req == review.user.user %}
   <div class="d-flex">
     <a
-      href="{% url 'delete-review' review.id %}"
+      href="{% url 'delete_review' review.id %}"
       type="button"
       class="btn btn-danger p-1 mb-3 me-3"
       >Delete</a
@@ -31,7 +31,7 @@
     <h5 class="mb-3">Reply</h5>
     {% if reviews.rev %}
     <ul class="p-0">
-      {% for reviews in all_review %}
+      {% for review in all_review %}
       <li>
         <article class="mt-3">
           <span
@@ -41,9 +41,9 @@
           >
 
           <p class="comment-bg rounded my-1">{{review.text}}</p>
-          {% if user.is_authenticated and req == review.username.username %}
+          {% if user.is_authenticated and req == review.user.user %}
           <a
-            href="{% url 'delete-review comment.id %}"
+            href="{% url 'delete_review comment.id %}"
             class="btn btn-danger py-1 my-1"
             style="font-size: 0.8rem"
             >Delete</a
@@ -55,7 +55,7 @@
       {% endfor %}
     </ul>
     {% else %}
-    <span class="mb-3">Make the first comment!</span>
+    <span class="mb-3">Reply it!</span>
     {% endif %}
   </section>
   {% if user.is_authenticated %}

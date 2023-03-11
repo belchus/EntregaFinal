@@ -3,23 +3,22 @@
 
 <div class="d-flex flex-column align-items-center">
   <h1 class="title">MovieReviews</h1>
-{% for review in all_reviews %}
+  {% if all_reviews %} {% for review in all_reviews %}
 
   <div class="card my-card" style="margin: 3rem 0">
     <div class="card-body">
       <h2 class="card-title">{{review.title}}</h2>
       <h4 class="card-title">{{review.user}}</h4>
 
-      <p class="card-text">{{text|safe}}</p>
+      <p class="card-text">{{review.text}}</p>
       <p class="card-text">
         <small class="text-muted">{{review.date}}</small>
       </p>
     </div>
-    <a href="{% url 'revdetail' %}" class="btn btn-post py-1"
       >reply it</a
     >
   </div>
-  {% endfor %} 
+  {% endfor %} {% else %}
   <span style="color: red"> No se encontraron MovieReviews</span>
-   {% endblock %}
+  {% endif %} {% endblock %}
 </div>
