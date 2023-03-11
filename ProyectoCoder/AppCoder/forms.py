@@ -6,7 +6,7 @@ from .models import *
 from django.forms import ModelForm
 class AddMovie(forms.Form):
  title =  forms.CharField(max_length=40)
- img = forms.ImageField(max_length= 250)
+ img = forms.CharField(max_length= 250)
  description = forms.CharField(max_length=200)
  tag = forms.CharField(max_length=40)
 

@@ -1,4 +1,4 @@
-{% extends 'index.html' %} {% block title %} Todos los movies {%endblock%}
+{% extends 'index.html' %} {% block title %} {%endblock%}
 {% block main_content %}
 
 <section class="container">
@@ -23,7 +23,7 @@
             class="d-flex justify-content-center col-lg-6 mb-3 align-items-center"
           >
             <table>
-              {{ AddMovie.as_table}}
+              {{ AddMovie.as_table }}
             </table>
 
             <button
@@ -51,7 +51,7 @@
                   </p>
               </div>
           </li>
-    
+          <a class="btn btn-primary my-3 py-1" href="{% url 'review_form' %}">Deja tu MovieReview</a>
           {% endfor %}
 
     </div>

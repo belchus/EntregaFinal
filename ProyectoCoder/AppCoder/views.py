@@ -70,13 +70,13 @@ def add_form(request):
             newProd.save()
             return redirect(inicio)
             
-
-
         else:
             return render(request, 'movies.html', {'AddMovie': AddMovie})
     
     addmovie= AddMovie()
-    return render(request, 'movies.html', {'AddMovie': AddMovie})
+    all_movies = Movie.objects.all()
+    return render(request, 'movies.html', {'AddMovie': AddMovie,'all_movies': all_movies})
+
 
 
 
@@ -90,7 +90,6 @@ def review_form(request):
             data = addreview.cleaned_data
             newRev = Review(title=data['title'],
                             img=data['img'],
-                            user=data['user'],
                             date=data['date'],
                             stars=data['stars'],
                             text =data['text'])
@@ -103,23 +102,6 @@ def review_form(request):
     addreview = AddReview()
     return render(request, 'reviews.html', {'AddReview': AddReview})
 
-
-def fav_form(request):
-    if request.method == "POST":
-        myFavs = AddFav(request.POST)
-
-        if myFavs.is_valid():
-            data = myFavs.cleaned_data
-            newFav = Movie(name=data['name'],
-                             address=data['address'],
-                             phone=data['phone'],
-                              online=data['online'])
-
-            newFav.save()
-            return redirect(inicio)
-
-    myFavs = AddFav()
-    return render(request, 'lista.html', {'AddFav': AddFav})
 
 
 
@@ -232,7 +214,7 @@ def create_avatar(req):
             
         avatar = Avatar(user=req.user, image=perform.cleaned_data['image'])
         avatar.save()
-        return redirect('reviews')
+        return redirect(inicio)
     else:
         perform  = AvatarForm()
         return render(req, 'edit-avatar.html', {'perform': perform})
@@ -246,12 +228,6 @@ def all_reviews(request):
     return render(request, 'reviews.html', context)
 
 
-def all_movies(request):
-    all_movies = Movie.objects.all()
-
-    context = {'all_movies': all_movies, }
-
-    return render(request, 'movies.html', context)
 
 
 
