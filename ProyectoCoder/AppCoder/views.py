@@ -200,7 +200,7 @@ def edit_profile(req):
             
             user.save()
 
-            return redirect('all_reviews')
+            return redirect(inicio)
 
     
     else:
@@ -244,6 +244,15 @@ def all_reviews(request):
     context = {'all_reviews': all_reviews, }
 
     return render(request, 'reviews.html', context)
+
+
+def all_movies(request):
+    all_movies = Movie.objects.all()
+
+    context = {'all_movies': all_movies, }
+
+    return render(request, 'movies.html', context)
+
 
 
 def detail_reviews(request, pk):

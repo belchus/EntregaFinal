@@ -10,6 +10,7 @@ urlpatterns = [
     path('favorite/', views.Movies),
     path('fav_form/', views.fav_form, name='fav_form'),
     path('all_reviews/', views.Reviews),
+    path('all_movies/', views.Movies),
     path('find_movie/', views.find_movie, name='find_movie'),
     path('resultados/',views.Resultados,name='resultados'),
     path('busqueda/',views.Busqueda),
