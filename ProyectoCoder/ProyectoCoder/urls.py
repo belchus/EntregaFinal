@@ -35,7 +35,7 @@ path('', views.inicio),
     path('edit-profile/', views.edit_profile, name ='edit-profile'),
     path('edit-avatar/', views.create_avatar, name ='edit-avatar'),
     path('reviews/', views.all_reviews, name='all-posts'),
-    path('review-detail/<pk>', views.detail_reviews, name='post-detail'),
+    path('detail_reviews/<pk>', views.detail_reviews, name='detail_reviews'),
     path('review-form/', views.review_form, name='review_form'),
     path('delete-review/<pk>', views.delete_review, name='delete-post'),
     path('update-review/<pk>', views.update_review, name='update-post'),
@@ -43,4 +43,7 @@ path('', views.inicio),
 
 
 
+
 ]
+
+handler400 = Error_404.as_view()

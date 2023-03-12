@@ -6,18 +6,16 @@ from .models import *
 from django.forms import ModelForm
 class AddMovie(forms.Form):
  title =  forms.CharField(max_length=40)
- description = forms.CharField(max_length=200)
+ description = forms.CharField(max_length=500)
  tag = forms.CharField(max_length=40)
 
 
 class AddReview(forms.Form):
    title =  forms.CharField(max_length=40)
-   img = forms.CharField(max_length= 250)
-   text = forms.CharField(max_length=200)
+   text = forms.CharField(max_length=500)
    user = forms.CharField(max_length=40)
    date = forms.DateField()
-   stars = forms.IntegerField()
-   avatar = forms.CharField(max_length= 250)
+
 
 class AddNewReview(ModelForm):
     class Meta:

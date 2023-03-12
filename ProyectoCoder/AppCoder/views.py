@@ -6,7 +6,8 @@ from .forms import *
 from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User as UserAuth
+from django.contrib.auth.models import User as UserAuthfrom
+from  django.views.generic import TemplateView
 
 def about_me(request):
     return render(request, 'about-me.html')
@@ -17,7 +18,7 @@ def inicio(request):
 
 
 def Movies(request):
-    return render(request, 'movie.html')
+    return render(request, 'movies.html')
 
 
 def Busqueda(request):
@@ -210,7 +211,7 @@ def all_reviews(request):
 #Formulario para comentar
 
 def detail_reviews(request, pk):
-    review = Movie.objects.get(tag=pk)
+    review = Review.objects.get(id=pk)
 
     newReview = AddNewReview()
 
@@ -223,8 +224,8 @@ def detail_reviews(request, pk):
                                   text = data['text'],
                                   username=request.user)
             new_rev.save()
-            return redirect(f'/revdetail/{review.tag}')
-    all_reviews = Review.objects.filter(tag=movie.tag)
+            return redirect(f'/revdetail/{review.id}')
+    all_reviews = Review.objects.filter(id=review.id)
     rev = len(all_reviews) > 0
 
     rev_context = {'all': all_reviews, 'rev': rev}
@@ -240,11 +241,11 @@ def detail_reviews(request, pk):
 def delete_reply(request, pk):
     oldreview = Review.objects.get(id= pk)
     context = {'delete': oldreview}
-    print('reviewdelete',oldreview.tag.tag)
+    print('reviewdelete',oldreview.id.id)
 
     if request.method == 'POST':
         oldreview.delete()
-        return redirect(f'/revdetail.html/{oldreview.tag.tag}')
+        return redirect(f'/revdetail.html/{oldreview.id.id}')
 
     return render(request, 'warning.html', context)
 
@@ -281,3 +282,7 @@ def update_review(request, pk):
 
 
     return render(request, 'newreview.html', context)
+ 
+
+class Error_404(TemplateView):
+    template_name = '404.html'

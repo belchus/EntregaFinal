@@ -3,7 +3,7 @@
   </title>
   {%endblock%} {% block main_content %}
   <div style="width: 70%; margin: auto">
-    <h2 class="mb-5">New post</h2>
+    <h2 class="mb-5">MovieReview</h2>
     <form action="" method="POST" enctype="multipart/form-data">
       {% csrf_token%} {% for field in form %} {{field.label}}
       <br />

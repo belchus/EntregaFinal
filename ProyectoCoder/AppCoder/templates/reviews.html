@@ -15,7 +15,8 @@
         <small class="text-muted">{{review.date}}</small>
       </p>
     </div>
-      >reply it</a
+    <a href="{% url 'detail_reviews' %}" class="btn btn-post py-1"
+    >reply it</a
     >
   </div>
   {% endfor %} {% else %}

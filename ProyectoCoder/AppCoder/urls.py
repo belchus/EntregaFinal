@@ -1,6 +1,7 @@
 from django.urls import include, path
 from AppCoder import views
 from django.contrib.auth.views import LogoutView
+from AppCoder.views import *
 from django.conf import settings
 
 urlpatterns = [
@@ -27,4 +28,6 @@ urlpatterns = [
 
 
 ]
+
+handler400 = Error_404.as_view()
  
