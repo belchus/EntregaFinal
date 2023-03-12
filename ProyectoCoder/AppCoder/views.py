@@ -270,7 +270,7 @@ def delete_review(request, pk):
 
 @login_required
 def update_review(request, pk):
-    revupdate = Review.objects.get(tag= pk)
+    revupdate = Review.objects.get(id= pk)
     rev_form = AddReview(instance=revupdate)
     update = True
 

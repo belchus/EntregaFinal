@@ -1,7 +1,7 @@
 {% extends 'index.html'%} {% block title %}<title>Review </title>
 {%endblock%} {% block main_content %}
 <div class="row justify-content-center" style="width: 70%; margin: auto">
-  {% if user.is_authenticated and req == review.user.user %}
+  {% if user.is_authenticated and req == review.user %}
   <div class="d-flex">
     <a
       href="{% url 'delete_review' review.id %}"

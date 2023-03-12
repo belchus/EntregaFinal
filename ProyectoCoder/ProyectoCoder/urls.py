@@ -37,9 +37,9 @@ path('', views.inicio),
     path('reviews/', views.all_reviews, name='all-posts'),
     path('detail_reviews/<pk>', views.detail_reviews, name='detail_reviews'),
     path('review_form/', views.review_form, name='review_form'),
-    path('delete-review/<pk>', views.delete_review, name='delete-post'),
-    path('update-review/<pk>', views.update_review, name='update-post'),
-    path('delete-reply/<pk>', views.delete_reply, name='delete-comment'),
+    path('delete-review/<pk>', views.delete_review, name='delete_review'),
+    path('update-review/<pk>', views.update_review, name='update_review'),
+    path('delete-reply/<pk>', views.delete_reply, name='delete-reply'),
     path('revdetail/<pk>', views.detail_reviews, name='revdatail'),
 
 
