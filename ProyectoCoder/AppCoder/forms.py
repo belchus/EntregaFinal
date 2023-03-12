@@ -10,12 +10,16 @@ class AddMovie(forms.Form):
  tag = forms.CharField(max_length=40)
 
 
-class AddReview(forms.Form):
-   title =  forms.CharField(max_length=40)
-   text = forms.CharField(max_length=500)
-   user = forms.CharField(max_length=40)
-   date = forms.DateField()
 
+
+class AddReview(ModelForm):
+    class Meta:
+        model = Review
+        fields =   ['title', 'stars','text']
+        widgets ={
+            'review': forms.Textarea(attrs={'class': 'form-control','placeholder': 'Dejar MovieReview' }),
+            
+        }
 
 class AddNewReview(ModelForm):
     class Meta:

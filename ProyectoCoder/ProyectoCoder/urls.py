@@ -40,7 +40,7 @@ path('', views.inicio),
     path('delete-review/<pk>', views.delete_review, name='delete-post'),
     path('update-review/<pk>', views.update_review, name='update-post'),
     path('delete-reply/<pk>', views.delete_reply, name='delete-comment'),
-
+    path('revdetail/<pk>', views.detail_reviews, name='revdatail'),
 
 
 

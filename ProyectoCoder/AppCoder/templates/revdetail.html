@@ -24,6 +24,7 @@
     <p class="mt-3">{{review.text | safe}}</p>
 
     <h6 class="text-end"> {{review.user}}</h6>
+    <h6 class="text-end"> {{review.date}}</h6>
   </article>
   <section class="col-md-12">
     <h5 class="mb-3">Replys</h5>
@@ -37,7 +38,6 @@
             style="font-size: 1.2rem; margin-top: 1rem"
             >{{reply.username}}</span
           >
-
           <p class="comment-bg rounded my-1">{{reply.reply}}</p>
           {% if user.is_authenticated and req == reply.username.username %}
           <a
@@ -53,12 +53,12 @@
       {% endfor %}
     </ul>
     {% else %}
-    <span class="mb-3">Make the first comment!</span>
+    <span class="mb-3">Sin replys aun</span>
     {% endif %}
   </section>
   {% if user.is_authenticated %}
   <form action="" method="POST">
-    {% csrf_token %}{% for field in newReview %} {{field.label}}
+    {% csrf_token %}{% for field in AddReview %} {{field.label}}
     <br />
     {{form.media}} {{field}}
     <br />

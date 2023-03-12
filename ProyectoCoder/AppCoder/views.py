@@ -60,8 +60,10 @@ def add_form(request):
 #Formulario para dejar una reseña a una pelicula
 
 @login_required
-def review_form(request):
+def review_form(request,pk=0):
     form = AddNewReview()
+    pk = request.user.username
+    print(pk)
 
     if request.method == 'POST':
         form = AddNewReview(request.POST,request.FILES)
@@ -69,6 +71,7 @@ def review_form(request):
             data = form.cleaned_data
            
             new_review = Review(
+                            user=pk,
                             title = data['title'],
                             text = data['text'],
                             stars = data['stars'])
@@ -213,16 +216,16 @@ def all_reviews(request):
 def detail_reviews(request, pk):
     review = Review.objects.get(id=pk)
 
-    newReview = AddNewReview()
+    newReview = AddReview()
 
     if request.method == 'POST':
         newReview= AddReview(request.POST)
         if  newReview.is_valid():
             data =  newReview.cleaned_data
 
-            new_rev = Review(starts = review, 
+            new_rev = Review(stars = data['stars'] , 
                                   text = data['text'],
-                                  username=request.user)
+                                  title = data['title'])
             new_rev.save()
             return redirect(f'/revdetail/{review.id}')
     all_reviews = Review.objects.filter(id=review.id)
@@ -230,8 +233,8 @@ def detail_reviews(request, pk):
 
     rev_context = {'all': all_reviews, 'rev': rev}
     context= {'review': review, 'req': str(request.user), 
-              'comments':rev_context, 
-              'AddNewreview':AddNewReview}
+              'replys':rev_context, 
+              'AddReview':AddReview}
     
     return render(request, 'revdetail.html', context)
 

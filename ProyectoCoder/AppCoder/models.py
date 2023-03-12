@@ -19,7 +19,7 @@ class Movie(models.Model):
 class Review(models.Model):
     title =  models.CharField(max_length=40)
     text = models.CharField(max_length=200)
-    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
+    user =models.CharField(max_length=200)
     date = models.DateTimeField(auto_now_add=True)
     stars = models.IntegerField()
 def __str__(self):
@@ -31,3 +31,5 @@ class Avatar(models.Model):
 
     def __srt__(self):
         return self.user.user
+    
+
