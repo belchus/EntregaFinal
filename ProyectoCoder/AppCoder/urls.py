@@ -18,12 +18,12 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(template_name='logout.html'), name="logout"),
     path('edit-profile/', views.edit_profile, name ='edit-profile'),
     path('edit-avatar/', views.create_avatar, name ='edit-avatar'),
-    path('all_reviews/', views.all_reviews),
+    path('all_reviews/', views.all_reviews ,name ='all_reviews'),
     path('detail_reviews/<pk>', views.detail_reviews, name='detail_reviews'),
     path('review_form/', views.review_form, name='review_form'),
-    path('delete-review/<pk>', views.delete_review, name='delete_review'),
-    path('update-review/<pk>', views.update_review, name='update_review'),
-    path('delete-reply/<pk>', views.delete_reply, name='delete-reply'),
+    path('delete_review/<pk>', views.delete_review, name='delete_review'),
+    path('update_review/<pk>', views.update_review, name='update_review'),
+    path('delete_reply/<pk>', views.delete_reply, name='delete-reply'),
     path('revdetail/<pk>', views.detail_reviews, name='revdatail'),
 
 

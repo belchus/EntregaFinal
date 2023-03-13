@@ -76,7 +76,7 @@ def review_form(request,pk=0):
                             text = data['text'],
                             stars = data['stars'])
             new_review.save()
-            return redirect('../')
+            return redirect('all_reviews')
 
     context = {'form':form}
     return render(request, 'newreview.html', context)
@@ -194,7 +194,7 @@ def create_avatar(req):
             
         avatar = Avatar(user=req.user, image=perform.cleaned_data['image'])
         avatar.save()
-        return redirect(inicio)
+        return redirect(all_reviews)
     else:
         perform  = AvatarForm()
         return render(req, 'edit-avatar.html', {'perform': perform})
@@ -254,7 +254,6 @@ def delete_reply(request, pk):
 
 
 #Funcion para borrar la reseña
-
 @login_required
 def delete_review(request, pk):
     oldreview = Review.objects.get(id= pk)
@@ -262,9 +261,9 @@ def delete_review(request, pk):
 
     if request.method == 'POST':
         oldreview.delete()
-        return redirect('reviews')
+        return redirect(all_reviews)
 
-    return render(request, 'warning.html', context)
+    return render(request,'warning.html', context)
 
 #Formulario para actualizar la reseña
 
