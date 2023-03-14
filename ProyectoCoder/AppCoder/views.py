@@ -233,7 +233,7 @@ def detail_reviews(request, pk):
     all_reviews = Review.objects.filter(id=user.id)
     rev = len(all_reviews) > 0
     rev_context = {'all': all_reviews, 'rev': rev}
-    all_reply = Reply.objects.all()
+    all_reply = Reply.objects.filter(review_id=review)
     context = {'review': review, 'req': str(request.user),
                'replys': rev_context,
                'AddReply': AddReply(),
