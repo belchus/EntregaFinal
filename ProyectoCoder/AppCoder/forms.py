@@ -32,11 +32,15 @@ class AddNewReview(ModelForm):
         }
 
 
-class AddFav(forms.Form):
-    title =  forms.CharField(max_length=40)
-    stars = forms.IntegerField()
-    like = forms.BooleanField()
 
+class AddReply(ModelForm):
+    class Meta:
+        model = Review
+        fields =   '__all__'
+        widgets ={
+            'review': forms.Textarea(attrs={'class': 'form-control','placeholder': 'Dejar MovieReview' }),
+            
+        }
 
 
 class FindMovie(forms.Form):

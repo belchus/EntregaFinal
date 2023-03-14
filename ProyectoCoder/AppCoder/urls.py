@@ -5,7 +5,7 @@ from AppCoder.views import *
 from django.conf import settings
 
 urlpatterns = [
- path('', views.inicio),
+ path('', views.inicio,name='inicio'),
     path('movies/', views.Movies),
     path('add_form/', views.add_form),
     path('all_movies/', views.Movies),

@@ -18,8 +18,8 @@ class Movie(models.Model):
 
 class Review(models.Model):
     title =  models.CharField(max_length=40)
-    text = models.CharField(max_length=200)
-    user =models.CharField(max_length=200)
+    text = models.CharField(max_length=500)
+    user =models.ForeignKey(UserAuth,on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
     stars = models.IntegerField()
 def __str__(self):
@@ -32,4 +32,13 @@ class Avatar(models.Model):
     def __srt__(self):
         return self.user.user
     
+class Reply(models.Model):
+    title =  models.CharField(max_length=40)
+    text = models.CharField(max_length=500)
+    user =models.ForeignKey(UserAuth,on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
+    review =models.ForeignKey(Review,on_delete=models.CASCADE, null=True)
+
+def __str__(self):
+        return f'Reply de MovieUser: {self.user}'
 

@@ -1,7 +1,7 @@
 {% extends 'index.html'%} {% block title %}<title>Review </title>
 {%endblock%} {% block main_content %}
 <div class="row justify-content-center" style="width: 70%; margin: auto">
-  {% if user.is_authenticated and req == review.user %}
+  {% if user.is_authenticated and req == review.user.username %}
   <div class="d-flex">
     <a
       href="{% url 'delete_review' review.id %}"
@@ -28,27 +28,37 @@
   </article>
   <section class="col-md-12">
     <h5 class="mb-3">Replys</h5>
-    {% if reply.rev %}
+    {% if all_reply %}
     <ul class="p-0">
-      {% for reply in replys.all %}
+      {% for all_reply in all_reply %}
       <li>
         <article class="mt-3">
           <span
             class="gradient rounded px-2"
             style="font-size: 1.2rem; margin-top: 1rem"
-            >{{reply.username}}</span
+            >{{all_reply.title}}</span
           >
-          <p class="comment-bg rounded my-1">{{reply.reply}}</p>
-          {% if user.is_authenticated and req == reply.username.username %}
+          <span
+          class="gradient rounded px-2"
+          style="font-size: 1.2rem; margin-top: 1rem"
+          >{{all_reply.text}}</span
+        >
+          <span
+            class="gradient rounded px-2"
+            style="font-size: 1.2rem; margin-top: 1rem"
+            >De:{{all_reply.user}}</span
+          >
+          <p class="comment-bg rounded my-1">{{all_reply.all_reply}}</p>
+          {% if user.is_authenticated and req == all_reply.user.username %}
           <a
-            href="{% url 'delete_reply' reply.id %}"
+            href="{% url 'delete-reply' all_reply.id %}"
             class="btn btn-danger py-1 my-1"
             style="font-size: 0.8rem"
             >Delete</a
           >
           {% endif %}
         </article>
-        <p class="text-muted" style="font-size: 12px">{{reply.date}}</p>
+        <p class="text-muted" style="font-size: 12px">{{all_reply.date}}</p>
       </li>
       {% endfor %}
     </ul>
@@ -57,14 +67,16 @@
     {% endif %}
   </section>
   {% if user.is_authenticated %}
-  <form action="" method="POST">
-    {% csrf_token %}{% for field in AddReview %} {{field.label}}
-    <br />
-    {{form.media}} {{field}}
-    <br />
-    {%endfor%}
-    <input class="btn btn-primary mb-3 p-2" type="submit" value="Reply" />
-  </form>
+    <form  action="{% url 'detail_reviews' review.id %}" method="POST"> 
+      {% csrf_token %}{% for field in AddReview %} {{field.label}}
+      <br />
+      {{form.media}} {{field}}
+    
+      <br />
+      {%endfor%}
+      {{ AddReply.as_table }}
+      <input class="btn btn-primary mb-3 p-2" type="submit" value="Reply" />
+    </form>
 </div>
 
 {% endif %} 

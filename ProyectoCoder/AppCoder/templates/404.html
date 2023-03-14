@@ -1,0 +1,15 @@
+{% extends 'index.html' %} {% block title %}
+<title>Page not found</title> {%endblock %} {% block main_content %}
+<div style="width: 70%; margin: auto">
+  <div
+    class="d-flex justify-content-center flex-column align-items-center my-5"
+  >
+    <h2>Error 404</h2>
+    <p>Esta pagina no esta disponible</p>
+    <a href="{% url 'inicio' %}" class="btn btn-primary mb-3 py-1"
+      >Go back home</a
+    >
+  </div>
+</div>
+
+{% endblock %}
