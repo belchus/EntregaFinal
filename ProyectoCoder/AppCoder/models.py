@@ -21,7 +21,6 @@ class Review(models.Model):
     text = models.CharField(max_length=500)
     user =models.ForeignKey(UserAuth,on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-    stars = models.IntegerField()
 def __str__(self):
         return f'Review de MovieUser: {self.user}'
 
