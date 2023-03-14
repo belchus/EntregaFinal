@@ -45,7 +45,7 @@ def add_form(request):
                             )
 
             newProd.save()
-            return redirect(inicio)
+            return redirect(Movies)
             
         else:
             return render(request, 'movies.html', {'AddMovie': AddMovie})
@@ -74,9 +74,9 @@ def review_form(request,pk=0):
                             user=user,
                             title = data['title'],
                             text = data['text'],
-                            stars = data['stars'])
+                            )
             new_review.save()
-            return redirect('../')
+            return redirect(all_reviews)
 
     context = {'form':form}
     return render(request, 'newreview.html', context)
@@ -201,7 +201,7 @@ def create_avatar(req):
     
 
 #Funcion para traer todas las reseñas
-
+@login_required
 def all_reviews(request):
     all_reviews = Review.objects.all()
 
@@ -254,7 +254,7 @@ def delete_reply(request, pk):
 
     if request.method == 'POST':
         oldreview.delete()
-        return redirect(detail_reviews)
+        return redirect(all_reviews)
 
     return render(request, 'warning.html', context)
 
@@ -268,7 +268,7 @@ def delete_review(request, pk):
 
     if request.method == 'POST':
         oldreview.delete()
-        return redirect(inicio)
+        return redirect(all_reviews)
 
     return render(request,'warning.html', context)
 
