@@ -1,6 +1,7 @@
 # MovieApp
 
 LINK AL VIDEO https://www.youtube.com/watch?v=NWVEG7zrs7c
+LINK AL VIDEO DE PRUEBA ERROR 404 https://youtu.be/Ub5pE-MPe8U
 
 -En el extremo superior se encuentra la seccion para poder logearse y en caso de ser necesario registrarse  para navegar en la app
 
