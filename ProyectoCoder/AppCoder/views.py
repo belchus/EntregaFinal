@@ -45,7 +45,7 @@ def add_form(request):
                             )
 
             newProd.save()
-            return redirect(Movies)
+            return redirect(inicio)
             
         else:
             return render(request, 'movies.html', {'AddMovie': AddMovie})
