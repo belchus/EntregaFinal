@@ -17,10 +17,6 @@
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
     </head>
     <body>
-        <div class="container2">
-            <a href="/login/">Login</a>
-    
-        </div>
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
@@ -28,9 +24,19 @@
                 <a href="/add_form">Movies</a>
                 <a href="/all_reviews/">MovieReviews</a>
                 <a href="/busqueda/">Buscar</a>
-                <a href="/edit-profile/">Mi perfil</a>
                 
             </div>
+            {% if user.is_authenticated %}
+            <span class="navbar-brand color"><a href="/edit-profile/">{{user.username}}</a></span>
+            {% if user.avatar %}
+            <img
+              src="{{ user.avatar.image.url }}"
+              height="30px"
+            />
+            {% endif %}
+            {% else %}
+    <a class="btn btn-primary py-1" href="{% url 'login' %}">Login</a>
+    {% endif %}
         </nav>
         <!-- Masthead-->
         <header class="masthead">
